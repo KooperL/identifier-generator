@@ -1,25 +1,27 @@
-# Cloudflare Workers OpenAPI 3.1
+> [!IMPORTANT]  
+> This project was too small in scope to maintain as a stand alone repo. It's been merged with [http-utils](https://github.com/KooperL/http-utils)
 
-This is a Cloudflare Worker with OpenAPI 3.1 using [itty-router-openapi](https://github.com/cloudflare/itty-router-openapi).
+# identifier-generator
 
-This is an example project made to be used as a quick start into building OpenAPI compliant Workers that generates the
-`openapi.json` schema automatically from code and validates the incoming request to the defined parameters or request body.
+HTTP wrapper for:
+ - `random-word-slugs` - [npm](https://www.npmjs.com/package/random-word-slugs)
+ - `uuid` - [npm](https://www.npmjs.com/package/uuid)
 
-## Get started
+>`random-word-slugs` A handy utility to create those random word slugs (e.g., generous-pink-biscuit) you see all over the place.
+>`uuid` is a JavaScript implementation of the full UUID spec ([RFC9562](https://www.rfc-editor.org/rfc/rfc9562.html))
 
-1. Sign up for [Cloudflare Workers](https://workers.dev). The free tier is more than enough for most use cases.
-2. Clone this project and install dependencies with `npm install`
-3. Run `wrangler login` to login to your Cloudflare account in wrangler
-4. Run `wrangler deploy` to publish the API to Cloudflare Workers
+Moving utility functions to API endpoints instead of importing libraries directly can significantly improve cross-language compatibility and provide access to runtimes or languages with less rich community support.
 
-## Project structure
 
-1. Your main router is defined in `src/index.ts`.
-2. Each endpoint has its own file in `src/endpoints/`.
-3. For more information read the [itty-router-openapi official documentation](https://cloudflare.github.io/itty-router-openapi/).
+Key benefits:
+ - Language-agnostic implementation - use anywhere
+ - Centralized updates and maintenance
+ - Easy to scale independently of client applications
+ - Built-in usage monitoring and access control
+ - Consistent behavior across all consuming applications
 
-## Development
-
-1. Run `wrangler dev` to start a local instance of the API.
-2. Open `http://localhost:9000/` in your browser to see the Swagger interface where you can try the endpoints.
-3. Changes made in the `src/` folder will automatically trigger the server to reload, you only need to refresh the Swagger interface.
+Main trade-offs to consider when using `http-utils`:
+ - Network latency vs direct function calls
+ - Infrastructure costs for hosting APIs (for self hosting)
+ - Additional complexity for simple utilities which are available in std lib
+ - Requires internet connectivity
